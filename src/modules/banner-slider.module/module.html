@@ -1,0 +1,42 @@
+<div class="oolio-slider-main" x-data="{
+                                       selected: 1,
+                                       total: $refs.stepContent.children.length,
+                                       prev(){
+                                       if(this.selected > 1)
+                                       this.selected--;
+                                       },
+                                       next(){
+                                       if(this.selected < this.total)
+                                       this.selected++; 
+                                       },
+                                       isSelected(stepItemId){
+                                       return 'step-item-'+this.selected === stepItemId;
+                                       }
+                                       }" x-cloak>
+    <div x-ref="stepContent" class="oolio-slider">
+        {% for item in module.slide_item %}
+        <div x-show="isSelected($id('step-item'))" x-id="['step-item']" :id="$id('step-item')">
+            {% if item.image_field.src %}
+            {% set sizeAttrs = 'width="{{ item.image_field.width|escape_attr }}" height="{{
+            item.image_field.height|escape_attr }}"' %}
+            {% if item.image_field.size_type == 'auto' %}
+            {% set sizeAttrs = 'width="{{ item.image_field.width|escape_attr }}" height="{{
+            item.image_field.height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+            {% elif item.image_field.size_type == 'auto_custom_max' %}
+            {% set sizeAttrs = 'width="{{ item.image_field.max_width|escape_attr }}" height="{{
+            item.image_field.max_height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+            {% endif %}
+            {% set loadingAttr = item.image_field.loading != 'disabled' ? 'loading="{{
+            item.image_field.loading|escape_attr }}"' : '' %}
+            <img src="{{ item.image_field.src|escape_url }}" alt="{{ item.image_field.alt|escape_attr }}" {{ loadingAttr
+                }} {{ sizeAttrs }}>
+            {% endif %}
+            <h3>{{ item.title }}</h3>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="oolio-slider-btns">
+        <button @click="prev" :class="{'gray': selected === 1}">prev</button>
+        <button @click="next" :class="{'gray': selected === total}">next</button>
+    </div>
+</div>

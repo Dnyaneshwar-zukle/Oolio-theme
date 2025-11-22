@@ -1,0 +1,42 @@
+[
+ {
+  "type": "group",
+  "id": "c747aabe-03d4-2271-69b0-1d809f27ba92",
+  "label": "Slide Item",
+  "children": [
+   {
+    "type": "image",
+    "id": "113c46b7-6542-1d67-e7b5-07a510b571a2",
+    "default": {
+     "size_type": "auto_custom_max",
+     "src": "https://244438096.fs1.hubspotusercontent-na2.net/hubfs/244438096/oolio-hospitality-1.jpg",
+     "alt": "oolio-hospitality-1",
+     "loading": "lazy",
+     "width": 7373,
+     "height": 3888,
+     "max_width": 2000,
+     "max_height": 1054.658890546589
+    },
+    "resizable": true,
+    "responsive": true,
+    "show_loading": false,
+    "label": "Image",
+    "name": "image_field"
+   },
+   {
+    "type": "text",
+    "id": "b290e638-d4f7-7bc3-b83c-6fa05263422b",
+    "validation_regex": "",
+    "label": "Title",
+    "name": "title",
+    "default": "Oolio empowers restaurants and cafés with modern POS and payment solutions that simplify operations and enhance customer experience."
+   }
+  ],
+  "name": "slide_item",
+  "default": [],
+  "visibility": null,
+  "occurrence": {
+   "sorting_label_field": "b290e638-d4f7-7bc3-b83c-6fa05263422b"
+  }
+ }
+]
