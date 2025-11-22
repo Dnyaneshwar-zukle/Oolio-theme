@@ -13,30 +13,51 @@
                                        return 'step-item-'+this.selected === stepItemId;
                                        }
                                        }" x-cloak>
-    <div x-ref="stepContent" class="oolio-slider">
-        {% for item in module.slide_item %}
-        <div x-show="isSelected($id('step-item'))" x-id="['step-item']" :id="$id('step-item')">
-            {% if item.image_field.src %}
-            {% set sizeAttrs = 'width="{{ item.image_field.width|escape_attr }}" height="{{
+  <div x-ref="stepContent" class="oolio-slider">
+    {% for item in module.slide_item %}
+    <div x-show="isSelected($id('step-item'))" x-id="['step-item']" :id="$id('step-item')" class="oolio-slide-item">
+      {% if item.image_field.src %}
+      {% set sizeAttrs = 'width="{{ item.image_field.width|escape_attr }}" height="{{
             item.image_field.height|escape_attr }}"' %}
-            {% if item.image_field.size_type == 'auto' %}
-            {% set sizeAttrs = 'width="{{ item.image_field.width|escape_attr }}" height="{{
+      {% if item.image_field.size_type == 'auto' %}
+      {% set sizeAttrs = 'width="{{ item.image_field.width|escape_attr }}" height="{{
             item.image_field.height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
-            {% elif item.image_field.size_type == 'auto_custom_max' %}
-            {% set sizeAttrs = 'width="{{ item.image_field.max_width|escape_attr }}" height="{{
+      {% elif item.image_field.size_type == 'auto_custom_max' %}
+      {% set sizeAttrs = 'width="{{ item.image_field.max_width|escape_attr }}" height="{{
             item.image_field.max_height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
-            {% endif %}
-            {% set loadingAttr = item.image_field.loading != 'disabled' ? 'loading="{{
+      {% endif %}
+      {% set loadingAttr = item.image_field.loading != 'disabled' ? 'loading="{{
             item.image_field.loading|escape_attr }}"' : '' %}
-            <img src="{{ item.image_field.src|escape_url }}" alt="{{ item.image_field.alt|escape_attr }}" {{ loadingAttr
+      <img src="{{ item.image_field.src|escape_url }}" alt="{{ item.image_field.alt|escape_attr }}" {{ loadingAttr
                 }} {{ sizeAttrs }}>
-            {% endif %}
-            <h3>{{ item.title }}</h3>
-        </div>
-        {% endfor %}
+      {% endif %}
+      <h3 class="oolio-banner-title content-wrapper">{{ item.title }}</h3>
     </div>
-    <div class="oolio-slider-btns">
-        <button @click="prev" :class="{'gray': selected === 1}">prev</button>
-        <button @click="next" :class="{'gray': selected === total}">next</button>
-    </div>
+    {% endfor %}
+  </div>
+  <div class="oolio-slider-btns">
+    <button @click="prev" :disabled="selected === 1" id="next">
+      <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" aria-hidden="true"><g id="angle-left1_layer"><path d="M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z"></path></g></svg>
+    </button>
+    <button @click="next" :disabled="selected === total" id="prev">
+      <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" aria-hidden="true"><g id="angle-right1_layer"><path d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"></path></g></svg>
+    </button>
+  </div>
 </div>
+{% require_css %}
+<style>
+  {% scope_css %}
+  .oolio-banner-title {
+    color: #ffffff; 
+  }
+  .oolio-slider-btns button:hover,
+  .oolio-slider-btns button {
+    background-color: #ffffff;
+    color: #000000;
+  }
+  .oolio-slider-btns button svg {
+    fill: #000000;  
+  }
+  {% end_scope_css %}
+</style>
+{% end_require_css %}

@@ -754,3 +754,9 @@ tfoot td {
   color: {{ h3_font.color }};
   font-size: {{ h3_font.size ~ h3_font.size_unit }};
 }
+
+@media (max-width: 768px ) {
+.h3, h3 {
+    font-size: 23px;
+ }
+}

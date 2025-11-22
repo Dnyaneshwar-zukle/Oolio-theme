@@ -1,0 +1,84 @@
+.oolio-slider-main {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.oolio-slider {
+  width: 100%;
+}
+.oolio-slide-item {
+  position: relative;
+  display: flex;
+}
+.oolio-slide-item:before {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+}
+.oolio-banner-title {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  padding: 0px 60px;
+}
+.oolio-slider-btns button {
+  padding: 0px;
+  margin: 0px;
+}
+.oolio-slider-btns button:hover,
+.oolio-slider-btns button {
+  padding: 0px;
+  margin: 0px;
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.oolio-slider-btns {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0px 20px;
+}
+.oolio-slider-btns button svg {
+  height: 30px;
+  width: 30px;
+}
+button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (min-width: 768px) {
+  .oolio-slide-item img {
+    object-fit: cover;
+    width: 100%;
+    max-height: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .oolio-banner-title {
+    padding: 0px 20px;
+  }
+  .oolio-slider-main {
+    align-items: flex-end;
+  }
+  .oolio-slider-btns {
+    padding: 0px 20px 30px 20px;
+  }
+}
